@@ -5,7 +5,7 @@ onready var viewport = get_viewport()
 func _ready():
 	#Conecta la señal que envía el viewport al cambiar de tamaño con la función
 	#change_aspect_ratio
-	#viewport.connect("size_changed",self,"change_aspect_ratio")
+	viewport.connect("size_changed",self,"change_aspect_ratio")
 	#Llama por primera vez a change_aspect_ratio para inicializar la pantalla
 	change_aspect_ratio()
 	
