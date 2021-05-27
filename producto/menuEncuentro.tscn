@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://encuentro.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[node name="Encuentro" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 682.506
+margin_top = 554.218
+margin_right = 758.506
+margin_bottom = 624.218
+icon = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

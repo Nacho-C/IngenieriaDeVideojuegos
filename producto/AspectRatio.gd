@@ -19,12 +19,10 @@ func change_aspect_ratio():
 	var real_ratio = real_size.x / real_size.y #Relación de aspecto real
 	
 	if (real_ratio >= min_ratio): #Se mantiene el alto fijo
-		print("alto")
 		scale = min_size.y / real_size.y
 		new_size = Vector2(real_size.x*scale,min_size.y)
 		margin = Vector2((new_size.x-min_size.x)/2, 0)
 	else: #Se mantiene el ancho fijo
-		print("ancho")
 		scale = min_size.x / real_size.x
 		new_size = Vector2(min_size.x,real_size.y*scale)
 		margin = Vector2(0, (new_size.y-min_size.y)/2)
