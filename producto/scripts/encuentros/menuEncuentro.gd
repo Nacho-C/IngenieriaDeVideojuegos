@@ -28,7 +28,7 @@ func init(e1,e2):
 		p.connect("bastaParaMi",self,"iniciarTurno",[p])
 		self.connect("bastaParaTodos",p,"detenerTimer")
 		self.connect("chanchoArriba",p,"retomarTimer")
-		
+	
 	#Agrego e inicializo equipo 2
 	equipo2 = e2
 	add_child(equipo2)
@@ -38,6 +38,7 @@ func init(e1,e2):
 		p.connect("bastaParaMi",self,"iniciarTurno",[p])
 		self.connect("bastaParaTodos",p,"detenerTimer")
 		self.connect("chanchoArriba",p,"retomarTimer")
+		#GUARDA CON ESTO
 		personajeSeleccionado = p
 	turnoEnProceso = false
 
@@ -46,19 +47,16 @@ func iniciarTurno(source):
 	personajeTurno = source
 	emit_signal("bastaParaTodos")
 	personajeTurno.position = personajeTurno.position + Vector2(50*personajeTurno.getDireccion(),0)
-	#GUARDA CON ESTO
-	if (personajeTurno.getNombre() == "Astor"):
-		inventarioTurno = res_inventarioHabilidades.instance()
-		inventarioTurno.position = Vector2(640,540)
-		inventarioTurno.init(personajeTurno.getHabilidades(),self)
-		add_child(inventarioTurno)
+	inventarioTurno = res_inventarioHabilidades.instance()
+	inventarioTurno.position = Vector2(640,540)
+	inventarioTurno.init(personajeTurno.getHabilidades(),self)
+	add_child(inventarioTurno)
 
 func terminarTurno(habilidad):
 	if (turnoEnProceso):
-		#GUARDA CON ESTO
-		if (personajeTurno.getNombre() == "Astor"):
-			personajeTurno.usarHabilidad(personajeSeleccionado,habilidad)
-			remove_child(inventarioTurno)
+		personajeTurno.usarHabilidad(personajeSeleccionado,habilidad)
+		remove_child(inventarioTurno)
+		inventarioTurno.queue_free()
 		personajeTurno.position = personajeTurno.position + Vector2(-50*personajeTurno.getDireccion(),0)
 		personajeTurno.comenzarTimer()
 		emit_signal("chanchoArriba")

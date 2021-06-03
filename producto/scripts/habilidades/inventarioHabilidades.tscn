@@ -32,17 +32,17 @@
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 164, 82 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 3 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 164, 82 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 164, 82 )
 
 [sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 164, 82 )
+
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 164, 82 )
 
 [node name="InventarioHabilidades" type="Node2D"]
@@ -71,7 +71,7 @@ margin_right = 242.338
 margin_bottom = 100.962
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 __meta__ = {
@@ -80,7 +80,7 @@ __meta__ = {
 
 [node name="BotonH2" type="TouchScreenButton" parent="Marco"]
 position = Vector2( 82, -205 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Label" type="Label" parent="Marco/BotonH2"]
 margin_left = 93.3381
@@ -89,7 +89,7 @@ margin_right = 242.338
 margin_bottom = 100.962
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 __meta__ = {
@@ -98,7 +98,7 @@ __meta__ = {
 
 [node name="BotonH3" type="TouchScreenButton" parent="Marco"]
 position = Vector2( -410, 41 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Label" type="Label" parent="Marco/BotonH3"]
 margin_left = 93.3381
@@ -107,7 +107,7 @@ margin_right = 242.338
 margin_bottom = 100.962
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 __meta__ = {
@@ -116,7 +116,7 @@ __meta__ = {
 
 [node name="BotonH4" type="TouchScreenButton" parent="Marco"]
 position = Vector2( 82, 41 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Label" type="Label" parent="Marco/BotonH4"]
 margin_left = 93.3381
@@ -125,7 +125,7 @@ margin_right = 242.338
 margin_bottom = 100.962
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 __meta__ = {
