@@ -4,24 +4,21 @@ const posEquipo1 = Vector2(320,360)
 const posEquipo2 = Vector2(960,360)
 
 #BORRAR ESTO
-var congelar = load("res://assets/habilidades/congelar.tres")
-var descongelar = load("res://assets/habilidades/descongelar.tres")
 var personajeSeleccionado
 
+var res_inventarioHabilidades = load("res://scripts/habilidades/inventarioHabilidades.tscn")
 var equipo1
 var equipo2
 var turnoEnProceso
 var personajeTurno
+var inventarioTurno
 var sePresionoBoton
 var habilidadSeleccionada
 
 signal bastaParaTodos
 signal chanchoArriba
 
-func init(e1,e2):
-	$BotonCongelar.connect("released",self,"terminarTurno",["congelar"])
-	$BotonDescongelar.connect("released",self,"terminarTurno",["descongelar"])
-	
+func init(e1,e2):	
 	#Agrego e inicializo equipo 1
 	equipo1 = e1
 	add_child(equipo1)
@@ -49,14 +46,19 @@ func iniciarTurno(source):
 	personajeTurno = source
 	emit_signal("bastaParaTodos")
 	personajeTurno.position = personajeTurno.position + Vector2(50*personajeTurno.getDireccion(),0)
-	
-func terminarTurno(habilidadBoton):
+	#GUARDA CON ESTO
+	if (personajeTurno.getNombre() == "Astor"):
+		inventarioTurno = res_inventarioHabilidades.instance()
+		inventarioTurno.position = Vector2(640,540)
+		inventarioTurno.init(personajeTurno.getHabilidades(),self)
+		add_child(inventarioTurno)
+
+func terminarTurno(habilidad):
 	if (turnoEnProceso):
-		match habilidadBoton:
-			"congelar": habilidadSeleccionada = congelar
-			"descongelar": habilidadSeleccionada = descongelar
+		#GUARDA CON ESTO
 		if (personajeTurno.getNombre() == "Astor"):
-			personajeTurno.usarHabilidad(personajeSeleccionado,habilidadSeleccionada)
+			personajeTurno.usarHabilidad(personajeSeleccionado,habilidad)
+			remove_child(inventarioTurno)
 		personajeTurno.position = personajeTurno.position + Vector2(-50*personajeTurno.getDireccion(),0)
 		personajeTurno.comenzarTimer()
 		emit_signal("chanchoArriba")

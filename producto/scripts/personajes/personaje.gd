@@ -17,10 +17,11 @@ func _ready():
 	pass
 	
 func _process(delta):
-	if (timerRunning):
-		timer += delta*dedosRapidos
+	if (self.timerRunning):
+		self.timer += delta*dedosRapidos
 		$Timer.set_text(String(int(timer)))
-		if (timer >= 100):
+		if (self.timer >= 100):
+			self.timer = 100
 			emit_signal("bastaParaMi")
 			timerRunning = false
 
@@ -47,7 +48,7 @@ func getDireccion():
 	return direccion
 	
 func getHabilidades():
-	$Habilidades.getHabilidades()
+	return $Habilidades.getHabilidades()
 
 func usarHabilidad(objetivo,habilidad):
 	habilidad.ejecutar(self,objetivo);
@@ -86,6 +87,14 @@ func alterarDedosRapidos(monto):
 	self.dedosRapidos = self.dedosRapidos + monto
 	if (self.dedosRapidos < 0):
 		self.dedosRapidos = 0
+
+func alterarTimer(monto):
+	self.timer = self.timer + monto
+	if (self.timer < 0):
+		self.timer = 0
+	else:
+		if (self.timer > 100):
+			self.timer = 100
 
 func addHabilidad(habilidad):
 	$Habilidades.addHabilidad(habilidad)

@@ -28,3 +28,4 @@ __meta__ = {
 
 [node name="Habilidades" type="Node" parent="."]
 script = ExtResource( 3 )
+habilidades = [ null, null, null, null ]

@@ -1,10 +1,10 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://scripts/habilidades/descongelar.tres" type="Script" id=1]
+[ext_resource path="res://scripts/habilidades/Habilidad.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
-nombre = "Acorde"
+nombre = "Descongelar"
 statBase = "talento"
 multiplicador = 1.0
 statObjetivo = "dedosRapidos"

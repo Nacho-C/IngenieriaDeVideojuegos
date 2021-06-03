@@ -5,7 +5,10 @@ class_name Habilidad
 export var nombre : String
 export(String,"respeto","talento","creatividad","autoestima","dedosRapidos") var statBase
 export var multiplicador : float
-export(String,"respeto","talento","creatividad","autoestima","dedosRapidos") var statObjetivo
+export(String,"respeto","talento","creatividad","autoestima","dedosRapidos","timer") var statObjetivo
+
+func getNombre():
+	return self.nombre
 
 func ejecutar(fuente,objetivo):
 	var monto
@@ -22,3 +25,4 @@ func ejecutar(fuente,objetivo):
 		"creatividad": objetivo.alterarCreatividad(monto)
 		"autoestima": objetivo.alterarAutoestima(monto)
 		"dedosRapidos": objetivo.alterarDedosRapidos(monto)
+		"timer": objetivo.alterarTimer(monto)

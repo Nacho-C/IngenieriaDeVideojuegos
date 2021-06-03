@@ -1,6 +1,6 @@
 extends Sprite
 
-var menuEncuentro = load("res://scripts/encuentros/menuEncuentro.tscn")
+export var menuEncuentro : Resource
 var equipo = load("res://scripts/equipos/equipo.tscn")
 var personaje = load("res://scripts/personajes/personaje.tscn")
 var astor = load("res://scripts/personajes/astor.tscn")
