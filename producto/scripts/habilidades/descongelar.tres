@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-nombre = "Descongelar"
+nombre = "Ralentizar"
 statBase = "talento"
 multiplicador = 1.0
 statObjetivo = "dedosRapidos"
+equipoAfectado = ""

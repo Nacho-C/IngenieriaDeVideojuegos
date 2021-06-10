@@ -8,3 +8,4 @@ nombre = "Saltar turno"
 statBase = "respeto"
 multiplicador = 0.0
 statObjetivo = "respeto"
+equipoAfectado = ""

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/personajes/personaje.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/img/Sprites/Nadia.png" type="Texture" id=2]
+
+[node name="Personaje" instance=ExtResource( 1 )]
+nombre = "Nadia Boulanger"
+creatividad = 60
+talento = 60
+autoestima = 80
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )

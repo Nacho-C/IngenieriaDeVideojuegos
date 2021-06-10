@@ -8,3 +8,4 @@ nombre = "Congelar"
 statBase = "talento"
 multiplicador = -1.0
 statObjetivo = "dedosRapidos"
+equipoAfectado = "enemigos"

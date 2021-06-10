@@ -8,9 +8,11 @@
 [ext_resource path="res://scripts/habilidades/saltar.tres" type="Resource" id=6]
 
 [node name="Personaje" instance=ExtResource( 1 )]
-nombre = "Astor"
-talento = 35
-dedosRapidos = 35
+nombre = "Astor Piazzolla"
+creatividad = 95
+talento = 95
+autoestima = 50
+dedosRapidos = 30
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 2, 2 )

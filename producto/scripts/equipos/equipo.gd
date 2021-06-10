@@ -1,10 +1,10 @@
 extends Node2D
 
 const pos1 = Vector2(0,0)
-const pos2a = Vector2(0,-50)
-const pos2b = Vector2(0,50)
-const pos3a = Vector2(0,-100)
-const pos3b = Vector2(0,100)
+const pos2a = Vector2(0,-75)
+const pos2b = Vector2(0,75)
+const pos3a = Vector2(0,-150)
+const pos3b = Vector2(0,150)
 
 var personajes = Array()
 

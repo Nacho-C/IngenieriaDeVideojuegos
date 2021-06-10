@@ -6,5 +6,5 @@ func init(habilidades,menu):
 		if (c is TouchScreenButton):
 			if (habilidades.size() >= i+1):
 				c.get_node("Label").set_text(habilidades[i].getNombre())
-				c.connect("released",menu,"terminarTurno",[habilidades[i]])
+				c.connect("released",menu,"mostrarObjetivos",[habilidades[i]])
 				i = i + 1

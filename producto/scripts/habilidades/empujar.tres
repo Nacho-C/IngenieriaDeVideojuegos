@@ -6,5 +6,6 @@
 script = ExtResource( 1 )
 nombre = "Empujar"
 statBase = "talento"
-multiplicador = -0.5
+multiplicador = 0.5
 statObjetivo = "timer"
+equipoAfectado = "aliados"

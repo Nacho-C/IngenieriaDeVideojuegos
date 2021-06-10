@@ -1,5 +1,6 @@
 extends Node2D
 
+var equipo
 var timer = 0.0
 var timerRunning = true
 var respeto : int = 0
@@ -12,28 +13,32 @@ var direccion
 var habilidades
 
 signal bastaParaMi
+signal seleccionado
+signal terminarTurno
 
-func _ready():
-	pass
-	
 func _process(delta):
 	if (self.timerRunning):
 		self.timer += delta*dedosRapidos
-		$Timer.set_text(String(int(timer)))
 		if (self.timer >= 100):
 			self.timer = 100
-			emit_signal("bastaParaMi")
 			timerRunning = false
+			emit_signal("bastaParaMi")
+		$Timer.set_text(String(int(timer)))
+
+func setEquipo(equipo):
+	self.equipo = equipo
+
+func getEquipo():
+	return equipo
 
 func detenerTimer():
 	timerRunning = false
 	
 func retomarTimer():
 	timerRunning = true
-	
+
 func comenzarTimer():
 	timer = 0
-	timerRunning = true
 	
 # 1: hacia la derecha, -1: hacia la izquierda
 func setDireccion(dir):
@@ -98,3 +103,18 @@ func alterarTimer(monto):
 
 func addHabilidad(habilidad):
 	$Habilidades.addHabilidad(habilidad)
+
+func seleccionar():
+	emit_signal("seleccionado")
+
+func s_terminarTurno():
+	emit_signal("terminarTurno")
+
+func setActivadoBoton(valor):
+	$Sprite/BotonPersonaje.setActivado(valor)
+
+func getPosicionFlecha():
+	var offsetX = ($Sprite.texture.get_width() * $Sprite.transform.get_scale().x / 2) + 10
+	var retorno = self.position
+	retorno.x += direccion * -1 * offsetX
+	return retorno
