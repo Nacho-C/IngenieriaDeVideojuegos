@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/img/estatua-lobo_marino.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Personajes/personaje.gd" type="Script" id=2]
 [ext_resource path="res://scripts/Personajes/habilidades.gd" type="Script" id=3]
 [ext_resource path="res://scripts/habilidades/saltar.tres" type="Resource" id=4]
-[ext_resource path="res://scripts/personajes/BotonPersonaje.gd" type="Script" id=5]
-[ext_resource path="res://scripts/habilidades/empujar.tres" type="Resource" id=6]
-[ext_resource path="res://scripts/habilidades/congelar.tres" type="Resource" id=7]
-[ext_resource path="res://scripts/habilidades/descongelar.tres" type="Resource" id=8]
+[ext_resource path="res://scripts/personajes/botonPersonaje.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1, 1 )
@@ -15,10 +12,10 @@ extents = Vector2( 1, 1 )
 [node name="Personaje" type="Node2D"]
 script = ExtResource( 2 )
 nombre = "Nombre"
-creatividad = 70
-talento = 70
-autoestima = 70
-dedosRapidos = 60
+creatividadInicial = 40
+talento = 40
+autoestima = 40
+dedosRapidos = 40
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
@@ -31,9 +28,9 @@ script = ExtResource( 5 )
 
 [node name="Timer" type="Label" parent="."]
 margin_left = -7.5
-margin_top = -50.0
+margin_top = -75.0
 margin_right = 7.5
-margin_bottom = -35.0
+margin_bottom = -60.0
 rect_scale = Vector2( 2, 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
@@ -43,4 +40,4 @@ __meta__ = {
 
 [node name="Habilidades" type="Node" parent="."]
 script = ExtResource( 3 )
-habilidades = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 4 ) ]
+habilidades = [ ExtResource( 4 ) ]

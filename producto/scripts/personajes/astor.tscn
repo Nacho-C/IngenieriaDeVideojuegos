@@ -2,21 +2,20 @@
 
 [ext_resource path="res://scripts/Personajes/personaje.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/img/Sprites/Astor.png" type="Texture" id=2]
-[ext_resource path="res://scripts/habilidades/descongelar.tres" type="Resource" id=3]
-[ext_resource path="res://scripts/habilidades/congelar.tres" type="Resource" id=4]
-[ext_resource path="res://scripts/habilidades/empujar.tres" type="Resource" id=5]
-[ext_resource path="res://scripts/habilidades/saltar.tres" type="Resource" id=6]
+[ext_resource path="res://scripts/habilidades/notaAguda.tres" type="Resource" id=3]
+[ext_resource path="res://scripts/habilidades/notaGrave.tres" type="Resource" id=4]
+[ext_resource path="res://scripts/habilidades/saltar.tres" type="Resource" id=5]
+[ext_resource path="res://scripts/habilidades/soloDeBandoneon.tres" type="Resource" id=6]
 
 [node name="Personaje" instance=ExtResource( 1 )]
 nombre = "Astor Piazzolla"
-creatividad = 95
-talento = 95
-autoestima = 50
-dedosRapidos = 30
+creatividadInicial = 40
+talento = 40
+autoestima = 40
+dedosRapidos = 40
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Habilidades" parent="." index="2"]
-habilidades = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
+habilidades = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ]

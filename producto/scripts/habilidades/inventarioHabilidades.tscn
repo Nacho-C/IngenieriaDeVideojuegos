@@ -33,7 +33,9 @@
 extents = Vector2( 164, 82 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 50
+size = 75
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -65,15 +67,14 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Marco/BotonH1"]
-margin_left = 93.3381
-margin_top = 45.9619
-margin_right = 242.338
-margin_bottom = 100.962
+margin_right = 328.0
+margin_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,15 +84,14 @@ position = Vector2( 82, -205 )
 shape = SubResource( 4 )
 
 [node name="Label" type="Label" parent="Marco/BotonH2"]
-margin_left = 93.3381
-margin_top = 45.9619
-margin_right = 242.338
-margin_bottom = 100.962
+margin_right = 328.0
+margin_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -101,15 +101,14 @@ position = Vector2( -410, 41 )
 shape = SubResource( 5 )
 
 [node name="Label" type="Label" parent="Marco/BotonH3"]
-margin_left = 93.3381
-margin_top = 45.9619
-margin_right = 242.338
-margin_bottom = 100.962
+margin_right = 328.0
+margin_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -119,15 +118,14 @@ position = Vector2( 82, 41 )
 shape = SubResource( 6 )
 
 [node name="Label" type="Label" parent="Marco/BotonH4"]
-margin_left = 93.3381
-margin_top = 45.9619
-margin_right = 242.338
-margin_bottom = 100.962
+margin_right = 328.0
+margin_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

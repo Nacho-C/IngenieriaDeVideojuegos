@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
-"class": "Habilidad",
+"class": "habilidad",
 "language": "GDScript",
-"path": "res://scripts/habilidades/Habilidad.gd"
+"path": "res://scripts/habilidades/habilidad.gd"
 } ]
 _global_script_class_icons={
-"Habilidad": ""
+"habilidad": ""
 }
 
 [application]

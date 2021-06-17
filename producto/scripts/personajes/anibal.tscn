@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/personajes/personaje.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/img/Sprites/Anibal.png" type="Texture" id=2]
+[ext_resource path="res://scripts/habilidades/criticaConstructiva.tres" type="Resource" id=3]
+[ext_resource path="res://scripts/habilidades/compas2.tres" type="Resource" id=4]
+[ext_resource path="res://scripts/habilidades/saltar.tres" type="Resource" id=5]
+[ext_resource path="res://scripts/habilidades/tiempoVivo.tres" type="Resource" id=6]
 
 [node name="Personaje" instance=ExtResource( 1 )]
 nombre = "Anibal Troilo"
-creatividad = 87
-talento = 90
-autoestima = 68
-dedosRapidos = 25
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+
+[node name="Habilidades" parent="." index="2"]
+habilidades = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ]

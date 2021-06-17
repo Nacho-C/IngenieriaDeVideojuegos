@@ -7,16 +7,17 @@ var res_inventarioHabilidades = load("res://scripts/habilidades/inventarioHabili
 var res_cursor = load("res://scripts/encuentros/cursor.tscn")
 var cursor
 var equipo1
+var respeto1
 var equipo2
+var respeto2
 var personajeTurno
 var inventarioTurno
-var sePresionoBoton
 var habilidadSeleccionada
 
 signal bastaParaTodos
 signal chanchoArriba
 
-func init(e1,e2):	
+func init(e1,e2):
 	#Agrego e inicializo equipo 1
 	equipo1 = e1
 	add_child(equipo1)
@@ -29,6 +30,8 @@ func init(e1,e2):
 		p.connect("terminarTurno",self,"terminarTurno",[p])
 		self.connect("bastaParaTodos",p,"detenerTimer")
 		self.connect("chanchoArriba",p,"retomarTimer")
+	$Respeto1.set_text(String(int(e1.getRespeto())))
+	$Respeto1.rect_position = posEquipo2 + Vector2(0,-360)
 	
 	#Agrego e inicializo equipo 2
 	equipo2 = e2
@@ -42,6 +45,8 @@ func init(e1,e2):
 		p.connect("terminarTurno",self,"terminarTurno",[p])
 		self.connect("bastaParaTodos",p,"detenerTimer")
 		self.connect("chanchoArriba",p,"retomarTimer")
+	$Respeto2.set_text(String(int(e2.getRespeto())))
+	$Respeto2.rect_position = posEquipo1 + Vector2(0,-360)
 
 func comenzarTurno(source):
 	personajeTurno = source
@@ -59,9 +64,13 @@ func turnoIA():
 	var rango = habilidades.size() - 1
 	var personajeSeleccionado
 	rng.randomize()
-	habilidadSeleccionada = habilidades[rng.randi_range(0,rango)]
+	habilidadSeleccionada = habilidades[rng.randi_range(0,rango-1)]
 	print(habilidadSeleccionada.getNombre())
-	if (habilidadSeleccionada.getNombre() != "Saltar turno"):
+	if (habilidadSeleccionada.getCosto() > personajeTurno.getCreatividad()):
+		print("No tiene creatividad.")
+		personajeSeleccionado = personajeTurno
+		habilidadSeleccionada = habilidades[rango]
+	else:
 		if (habilidadSeleccionada.getEquipoAfectado() == 2):
 			personajes = equipo1.getPersonajes()
 		else:
@@ -69,14 +78,12 @@ func turnoIA():
 		rango = personajes.size() - 1
 		personajeSeleccionado = personajes[rng.randi_range(0,rango)] 
 		print("Personaje elegido: ",personajeSeleccionado.getNombre())
-	else:
-		personajeSeleccionado = personajeTurno
 	terminarTurno(personajeSeleccionado)
 
 func mostrarInventarios():
 	inventarioTurno = res_inventarioHabilidades.instance()
 	inventarioTurno.position = Vector2(640,540)
-	inventarioTurno.init(personajeTurno.getHabilidades(),self)
+	inventarioTurno.init(personajeTurno,self)
 	add_child(inventarioTurno)
 
 func mostrarObjetivos(habilidad):
@@ -116,3 +123,22 @@ func terminarTurno(personajeSeleccionado):
 	personajeTurno.position = personajeTurno.position + Vector2(-50*personajeTurno.getDireccion(),0)
 	personajeTurno.comenzarTimer()
 	emit_signal("chanchoArriba")
+	actualizarRespeto()
+
+func actualizarRespeto():
+	respeto1 = equipo1.getRespeto()
+	respeto2 = equipo2.getRespeto()
+	$Respeto1.set_text(String(int(respeto1)))
+	$Respeto2.set_text(String(int(respeto2)))
+	if (respeto1 >= 100):
+		respeto1 = 100
+		$Respeto1.set_text(String(int(respeto1)))
+		terminarEncuentro(2)
+	if (respeto2 >= 100):
+		respeto2 = 100
+		$Respeto2.set_text(String(int(respeto2)))
+		terminarEncuentro(1)
+
+func terminarEncuentro(equipo):
+	emit_signal("bastaParaTodos")
+	print("Gana el equipo ",equipo)

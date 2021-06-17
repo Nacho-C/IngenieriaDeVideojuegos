@@ -33,3 +33,9 @@ func getPersonajes():
 func setDireccion(dir):
 	for p in personajes:
 		p.setDireccion(dir)
+
+func getRespeto():
+	var respeto = 0
+	for p in personajes:
+		respeto += p.getRespeto()
+	return respeto
