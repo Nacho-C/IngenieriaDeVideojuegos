@@ -19,6 +19,9 @@ signal bastaParaMi
 signal seleccionado
 signal terminarTurno
 
+func _ready():
+	animarCreatividad()
+
 #Actualiza el timer y la creatividad en cada frame
 func _process(delta):
 	if (timerRunning):

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/tilesets/tilesetMarco.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/encuentros/dialogoEncuentro.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/tango font.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 65
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 492, 246 )
+
+[node name="Dialogo" type="Node2D"]
+pause_mode = 2
+process_priority = 100
+visible = false
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="Marco" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 123, 123 )
+cell_quadrant_size = 123
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_tile_origin = 1
+format = 1
+tile_data = PoolIntArray( -65540, 0, 0, -65539, 0, 1, -65538, 0, 1, -65537, 0, 1, -131072, 0, 1, -131071, 0, 1, -131070, 0, 1, -131069, 0, 2, -4, 0, 65536, -3, 0, 65537, -2, 0, 65537, -1, 0, 65537, -65536, 0, 65537, -65535, 0, 65537, -65534, 0, 65537, -65533, 0, 65538, 65532, 0, 65536, 65533, 0, 65537, 65534, 0, 65537, 65535, 0, 65537, 0, 0, 65537, 1, 0, 65537, 2, 0, 65537, 3, 0, 65538, 131068, 0, 131072, 131069, 0, 131073, 131070, 0, 131073, 131071, 0, 131073, 65536, 0, 131073, 65537, 0, 131073, 65538, 0, 131073, 65539, 0, 131074 )
+
+[node name="Texto" type="Label" parent="Marco"]
+margin_left = -444.0
+margin_top = -222.0
+margin_right = 444.0
+margin_bottom = 222.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BotonDialogo" type="TouchScreenButton" parent="Marco"]
+pause_mode = 2
+position = Vector2( -492, -246 )
+shape = SubResource( 2 )

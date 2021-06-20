@@ -5,6 +5,7 @@
 [ext_resource path="res://scripts/otros/pruebas.gd" type="Script" id=3]
 
 [node name="Fondo" type="Sprite"]
+pause_mode = 1
 texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -360, -152 )

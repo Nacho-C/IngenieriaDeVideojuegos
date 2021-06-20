@@ -5,6 +5,7 @@ var posEquipo2 = Vector2(960,360)
 
 var res_inventarioHabilidades = load("res://scripts/habilidades/inventarioHabilidades.tscn")
 var res_cursor = load("res://scripts/encuentros/cursor.tscn")
+var dialogo = load("res://scripts/encuentros/dialogoEncuentro.tscn").instance()
 var cursor
 var equipo1
 var respeto1
@@ -53,11 +54,16 @@ func init(fondo,e1,e2):
 	$Respeto2.rect_position = posEquipo1 + Vector2(-128,-320)
 	
 	#Comienza el encuentro
+	dialogo.init()
+	add_child(dialogo)
+	dialogo.position = Vector2(640,540)
+	yield(dialogo.mostrar("¡Que comience el encuentro!"),"completed")
 	emit_signal("chanchoArriba")
 
 #Llamado cuando el timer de un personae llega a 100
 func comenzarTurno(source):
 	personajeTurno = source
+	yield(dialogo.mostrar(str("Es el turno de ",personajeTurno.getNombre(),".")),"completed")
 	emit_signal("bastaParaTodos")
 	personajeTurno.position = personajeTurno.position + Vector2(50*personajeTurno.getDireccion(),0)
 	if (personajeTurno.getEquipo() == 1):
@@ -74,9 +80,7 @@ func turnoIA():
 	var personajeSeleccionado
 	rng.randomize()
 	habilidadSeleccionada = habilidades[rng.randi_range(0,rango-1)]
-	print(habilidadSeleccionada.getNombre())
 	if (habilidadSeleccionada.getCosto() > personajeTurno.getCreatividad()):
-		print("No tiene creatividad.")
 		personajeSeleccionado = personajeTurno
 		habilidadSeleccionada = habilidades[rango]
 	else:
@@ -86,7 +90,6 @@ func turnoIA():
 			personajes = equipo2.getPersonajes()
 		rango = personajes.size() - 1
 		personajeSeleccionado = personajes[rng.randi_range(0,rango)] 
-		print("Personaje elegido: ",personajeSeleccionado.getNombre())
 	terminarTurno(personajeSeleccionado)
 
 #Muestra el inventario de habilidades del personaje a utilizar
@@ -123,16 +126,26 @@ func moverCursor(personajeSeleccionado):
 
 #Ejecuta la habilidad y prepara el encuentro para el próximo turno
 func terminarTurno(personajeSeleccionado):
+	var mensaje = personajeTurno.getNombre()
+	
 	if (cursor != null):
 		remove_child(cursor)
 		cursor.queue_free()
 		cursor = null
+	
 	if (personajeTurno.getEquipo() == 1):
 		for p in equipo1.getPersonajes():
 				p.setActivadoBoton(0)
 		for p in equipo2.getPersonajes():
 				p.setActivadoBoton(0)
-	personajeTurno.usarHabilidad(personajeSeleccionado,self.habilidadSeleccionada)
+	
+	if (habilidadSeleccionada.getNombre() == "Saltar turno"):
+		mensaje = str(mensaje," pasa su turno para ahorrar Creatividad.")
+	else:
+		mensaje = str(mensaje," usa ", habilidadSeleccionada.getNombre()," en ", personajeSeleccionado.getNombre(),".")
+	yield(dialogo.mostrar(mensaje),"completed")
+	
+	personajeTurno.usarHabilidad(personajeSeleccionado,habilidadSeleccionada)
 	personajeTurno.position = personajeTurno.position + Vector2(-50*personajeTurno.getDireccion(),0)
 	personajeTurno.comenzarTimer()
 	emit_signal("chanchoArriba")
@@ -166,5 +179,10 @@ func animarRespeto(equipo):
 		yield(get_tree(), "idle_frame")
 
 func terminarEncuentro(equipoGanador):
+	var mensaje
 	emit_signal("bastaParaTodos")
-	print("Gana el equipo ",equipoGanador)
+	if (equipoGanador == 1):
+		mensaje = "¡El equipo de Astor Piazzola gana el encuentro!"
+	else:
+		mensaje = "¡El equipo de Astor Piazzola pierde el encuentro!"
+	yield(dialogo.mostrar(mensaje),"completed")
