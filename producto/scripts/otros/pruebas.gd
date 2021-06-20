@@ -14,19 +14,21 @@ var p2a
 var encuentro
 
 func _ready():
-	#Generación de equipo 1
+	var fondo = load("res://assets/img/Playa-Background.png")
+	
+	#Creación de equipo 1
 	e1 = equipo.instance()
 	p1a = res_anibal.instance()
 	p1b = res_astor.instance()
 	e1.agregarPersonaje(p1b)
 	e1.agregarPersonaje(p1a)
 	
-	#Generación de equipo 2
+	#Creación de equipo 2
 	e2 = equipo.instance()
 	p2a = res_nadia.instance()
 	e2.agregarPersonaje(p2a)
 	
+	#Creación de encuentro
 	encuentro = menuEncuentro.instance()
 	add_child(encuentro)
-	encuentro.position = Vector2(-640,-360)
-	encuentro.init(e1,e2)
+	encuentro.init(fondo,e1,e2)

@@ -10,7 +10,7 @@ export(String,"respeto","talento","creatividad","autoestima","dedosRapidos","tim
 export(String,"aliados","enemigos") var equipoAfectado
 
 func getNombre():
-	return self.nombre
+	return nombre
 
 func getEquipoAfectado():
 	match equipoAfectado:
