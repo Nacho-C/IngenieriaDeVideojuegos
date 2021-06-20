@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Marco.png-7d5f11ad884cee46feb568c88f293117.stex"
+path="res://.import/NY-Background.png-69219953d941aab8dc418e61f75cb2b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/Marco.png"
-dest_files=[ "res://.import/Marco.png-7d5f11ad884cee46feb568c88f293117.stex" ]
+source_file="res://assets/img/Background/NY-Background.png"
+dest_files=[ "res://.import/NY-Background.png-69219953d941aab8dc418e61f75cb2b6.stex" ]
 
 [params]
 

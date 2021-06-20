@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/img/estatua-lobo_marino.png" type="Texture" id=1]
+[ext_resource path="res://assets/img/Sprites/estatua-lobo_marino.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Personajes/personaje.gd" type="Script" id=2]
 [ext_resource path="res://scripts/Personajes/habilidades.gd" type="Script" id=3]
 [ext_resource path="res://scripts/habilidades/saltar.tres" type="Resource" id=4]

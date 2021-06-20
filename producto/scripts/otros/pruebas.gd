@@ -14,7 +14,7 @@ var p2a
 var encuentro
 
 func _ready():
-	var fondo = load("res://assets/img/Playa-Background.png")
+	var fondo = load("res://assets/img/Background/Paris-Background.png")
 	
 	#Creación de equipo 1
 	e1 = equipo.instance()

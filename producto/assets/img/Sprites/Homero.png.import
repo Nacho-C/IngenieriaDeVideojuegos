@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/estatua-lobo_marino.png-de43c9890f8ec255df04e53bb827f387.stex"
+path="res://.import/Homero.png-41f5dd7de4bb487a77a4350c56f1f2cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/estatua-lobo_marino.png"
-dest_files=[ "res://.import/estatua-lobo_marino.png-de43c9890f8ec255df04e53bb827f387.stex" ]
+source_file="res://assets/img/Sprites/Homero.png"
+dest_files=[ "res://.import/Homero.png-41f5dd7de4bb487a77a4350c56f1f2cb.stex" ]
 
 [params]
 

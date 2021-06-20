@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/churches.png-3179a0f9e0414f4e61610bb14a4814aa.stex"
+path="res://.import/Vicente.png-b42f2f02a2f6e1aec3fdb16bff34b20e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/churches.png"
-dest_files=[ "res://.import/churches.png-3179a0f9e0414f4e61610bb14a4814aa.stex" ]
+source_file="res://assets/img/Sprites/Vicente.png"
+dest_files=[ "res://.import/Vicente.png-b42f2f02a2f6e1aec3fdb16bff34b20e.stex" ]
 
 [params]
 
