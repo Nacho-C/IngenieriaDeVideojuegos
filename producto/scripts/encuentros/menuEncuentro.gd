@@ -1,7 +1,7 @@
 extends Node2D
 
-var posEquipo1 = Vector2(320,360)
-var posEquipo2 = Vector2(960,360)
+var posEquipo1 = Vector2(250,420)
+var posEquipo2 = Vector2(1030,420)
 
 var res_inventarioHabilidades = load("res://scripts/habilidades/inventarioHabilidades.tscn")
 var res_cursor = load("res://scripts/encuentros/cursor.tscn")

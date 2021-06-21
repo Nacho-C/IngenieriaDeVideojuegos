@@ -17,6 +17,7 @@
 extents = Vector2( 1, 1 )
 
 [node name="Personaje" type="Node2D"]
+scale = Vector2( 1.3, 1.3 )
 script = ExtResource( 2 )
 nombre = "Nombre"
 creatividadInicial = 40
