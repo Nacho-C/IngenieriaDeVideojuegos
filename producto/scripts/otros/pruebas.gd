@@ -15,6 +15,7 @@ var encuentro
 
 func _ready():
 	var fondo = load("res://assets/img/Background/Paris-Background.png")
+	var musica = load("res://assets/music/Preparense - Astor Piazzolla.mp3")
 	
 	#Creación de equipo 1
 	e1 = equipo.instance()
@@ -31,4 +32,4 @@ func _ready():
 	#Creación de encuentro
 	encuentro = menuEncuentro.instance()
 	add_child(encuentro)
-	encuentro.init(fondo,e1,e2)
+	encuentro.init(fondo,musica,e1,e2)

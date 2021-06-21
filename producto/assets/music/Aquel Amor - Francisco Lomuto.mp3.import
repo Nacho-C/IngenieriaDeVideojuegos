@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Aquel Amor - Francisco Lomuto.mp3-2a4f83c22c72620647090d99b74ef1a1.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Aquel Amor - Francisco Lomuto.mp3"
+dest_files=[ "res://.import/Aquel Amor - Francisco Lomuto.mp3-2a4f83c22c72620647090d99b74ef1a1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 AspectRatio="*res://scripts/otros/aspectRatio.gd"
+Sonidos="*res://scripts/otros/sonidos.gd"
 
 [display]
 

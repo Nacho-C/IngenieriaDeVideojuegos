@@ -21,8 +21,8 @@ func posicionesPersonajes():
 		personajes[0].position = pos2a
 		personajes[1].position = pos2b
 	elif (personajes.size() == 3):
-		personajes[0].position = pos1
-		personajes[1].position = pos3a
+		personajes[0].position = pos3a
+		personajes[1].position = pos1
 		personajes[2].position = pos3b
 
 func getPersonajes():

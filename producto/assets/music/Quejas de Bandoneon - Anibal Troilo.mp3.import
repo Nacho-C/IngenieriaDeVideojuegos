@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Quejas de Bandoneon - Anibal Troilo.mp3-c7ce7da0cf6d7febdf4e78ebcf793088.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Quejas de Bandoneon - Anibal Troilo.mp3"
+dest_files=[ "res://.import/Quejas de Bandoneon - Anibal Troilo.mp3-c7ce7da0cf6d7febdf4e78ebcf793088.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

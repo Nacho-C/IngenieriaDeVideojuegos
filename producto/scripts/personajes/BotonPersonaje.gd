@@ -25,7 +25,9 @@ func setActivado(valor):
 
 #Emite la señal correspondiente al tocar el botón
 func toque():
-	if (activado == 1):
-		emit_signal("seleccionado")
-	elif (activado == 2):
-		emit_signal("terminarTurno")
+	if (activado != 0):
+		get_node("/root/Sonidos").click()
+		if (activado == 1):
+			emit_signal("seleccionado")
+		elif (activado == 2):
+			emit_signal("terminarTurno")

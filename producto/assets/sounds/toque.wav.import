@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/toque.wav-b174d3569567595dc81be4da37812cdc.sample"
+
+[deps]
+
+source_file="res://assets/sounds/toque.wav"
+dest_files=[ "res://.import/toque.wav-b174d3569567595dc81be4da37812cdc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

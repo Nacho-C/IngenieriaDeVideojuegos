@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Por una Cabeza - Carlos Gardel.mp3-e636ccd1afaa49a402d09cf3c468d131.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Por una Cabeza - Carlos Gardel.mp3"
+dest_files=[ "res://.import/Por una Cabeza - Carlos Gardel.mp3-e636ccd1afaa49a402d09cf3c468d131.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

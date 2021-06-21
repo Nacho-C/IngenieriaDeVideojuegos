@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Adios Nonino - Astor Piazzolla.mp3-ce85e7e6483a1464fa4ea3664650e1f2.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Adios Nonino - Astor Piazzolla.mp3"
+dest_files=[ "res://.import/Adios Nonino - Astor Piazzolla.mp3-ce85e7e6483a1464fa4ea3664650e1f2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

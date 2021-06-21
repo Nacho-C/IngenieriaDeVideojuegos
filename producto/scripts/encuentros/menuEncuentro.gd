@@ -7,6 +7,7 @@ var res_inventarioHabilidades = load("res://scripts/habilidades/inventarioHabili
 var res_cursor = load("res://scripts/encuentros/cursor.tscn")
 var dialogo = load("res://scripts/encuentros/dialogoEncuentro.tscn").instance()
 var cursor
+var musica
 var equipo1
 var respeto1
 var equipo2
@@ -19,9 +20,10 @@ signal bastaParaTodos
 signal chanchoArriba
 
 #Inicializa el encuentro
-func init(fondo,e1,e2):
+func init(fondo,musica,e1,e2):
 	#Setea el fondo del encuentro
 	self.texture = fondo
+	self.musica = musica
 	
 	#Agrega e inicializa equipo 1
 	equipo1 = e1
@@ -36,7 +38,7 @@ func init(fondo,e1,e2):
 		self.connect("bastaParaTodos",p,"detenerTimer")
 		self.connect("chanchoArriba",p,"retomarTimer")
 	$Respeto1.value = 0
-	$Respeto1.rect_position = posEquipo2 + Vector2(-128,-320)
+	$Respeto1.rect_position = posEquipo2 + Vector2(-128,-380)
 	
 	#Agrega e inicializa equipo 2
 	equipo2 = e2
@@ -51,7 +53,7 @@ func init(fondo,e1,e2):
 		self.connect("bastaParaTodos",p,"detenerTimer")
 		self.connect("chanchoArriba",p,"retomarTimer")
 	$Respeto2.value = 0
-	$Respeto2.rect_position = posEquipo1 + Vector2(-128,-320)
+	$Respeto2.rect_position = posEquipo1 + Vector2(-128,-380)
 	
 	#Comienza el encuentro
 	dialogo.init()

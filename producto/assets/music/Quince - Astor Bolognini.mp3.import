@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Quince - Astor Bolognini.mp3-d12f3cdcefe2f9407b8aea1bf79a644f.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Quince - Astor Bolognini.mp3"
+dest_files=[ "res://.import/Quince - Astor Bolognini.mp3-d12f3cdcefe2f9407b8aea1bf79a644f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

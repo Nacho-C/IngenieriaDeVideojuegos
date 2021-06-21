@@ -12,6 +12,7 @@ func mostrar(mensaje):
 	yield(self,"ocultado")
 
 func ocultar():
+	get_node("/root/Sonidos").click()
 	self.set_visible(false)
 	get_tree().paused = false
 	emit_signal("ocultado")

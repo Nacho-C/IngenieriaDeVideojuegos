@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bouree - Bach.mp3-ccb9e33568474677d68909bc65fdeb51.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Bouree - Bach.mp3"
+dest_files=[ "res://.import/Bouree - Bach.mp3-ccb9e33568474677d68909bc65fdeb51.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
