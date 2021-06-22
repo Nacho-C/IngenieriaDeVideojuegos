@@ -14,11 +14,15 @@ func init(equipo,ceroRelativo):
 		$Sprite.position = Vector2(21,0)
 		$Sprite.rotation = 295 * PI/180
 
-func setPersonaje(personaje):
+func aliadoSetPersonaje(personaje):
 	if (self.personaje != null):
 		self.personaje.setActivadoBoton(1)
 	self.personaje = personaje
 	self.personaje.setActivadoBoton(2)
+	self.position = personaje.getPosicionFlecha() + self.cero
+
+func rivalSetPersonaje(personaje):
+	self.personaje = personaje
 	self.position = personaje.getPosicionFlecha() + self.cero
 
 func getPersonaje():

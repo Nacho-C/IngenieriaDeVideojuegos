@@ -5,7 +5,7 @@ var posEquipo2 = Vector2(1030,420)
 
 var res_inventarioHabilidades = load("res://scripts/habilidades/inventarioHabilidades.tscn")
 var res_cursor = load("res://scripts/encuentros/cursor.tscn")
-var dialogo = load("res://scripts/encuentros/dialogoEncuentro.tscn").instance()
+var dialogo = load("res://scripts/dialogos/dialogoEncuentro.tscn").instance()
 var cursor
 var musica
 var equipo1
@@ -87,16 +87,24 @@ func turnoIA():
 	var personajeSeleccionado
 	rng.randomize()
 	habilidadSeleccionada = habilidades[rng.randi_range(0,rango-1)]
-	if (habilidadSeleccionada.getCosto() > personajeTurno.getCreatividad()):
+	if (rango == 0 || habilidadSeleccionada.getCosto() > personajeTurno.getCreatividad()):
 		personajeSeleccionado = personajeTurno
 		habilidadSeleccionada = habilidades[rango]
 	else:
+		cursor = res_cursor.instance()
 		if (habilidadSeleccionada.getEquipoAfectado() == 2):
 			personajes = equipo1.getPersonajes()
+			cursor.init(1,equipo1.position)
 		else:
 			personajes = equipo2.getPersonajes()
+			cursor.init(2,equipo2.position)
 		rango = personajes.size() - 1
-		personajeSeleccionado = personajes[rng.randi_range(0,rango)] 
+		personajeSeleccionado = personajes[rng.randi_range(0,rango)]
+		add_child(cursor)
+		get_node("/root/Sonidos").click()
+		moverCursor(personajeSeleccionado)
+		yield(get_tree().create_timer(1),"timeout")
+		get_node("/root/Sonidos").click()
 	terminarTurno(personajeSeleccionado)
 
 #Muestra el inventario de habilidades del personaje a utilizar
@@ -120,17 +128,20 @@ func mostrarObjetivos(habilidad):
 			cursor.init(1,equipo1.position)
 			for p in equipo1.getPersonajes():
 				p.setActivadoBoton(1)
-			cursor.setPersonaje(equipo1.getPersonajes()[0])
+			moverCursor(equipo1.getPersonajes()[0])
 		else:
 			cursor.init(2,equipo2.position)
 			for p in equipo2.getPersonajes():
 				p.setActivadoBoton(1)
-			cursor.setPersonaje(equipo2.getPersonajes()[0])
+			moverCursor(equipo2.getPersonajes()[0])
 		add_child(cursor)
 
 #Posiciona el cursor en el personaje tocado
 func moverCursor(personajeSeleccionado):
-	cursor.setPersonaje(personajeSeleccionado)
+	if (personajeTurno.getEquipo() == 1):
+		cursor.aliadoSetPersonaje(personajeSeleccionado)
+	else:
+		cursor.rivalSetPersonaje(personajeSeleccionado)
 
 #Ejecuta la habilidad y prepara el encuentro para el próximo turno
 func terminarTurno(personajeSeleccionado):
@@ -151,7 +162,11 @@ func terminarTurno(personajeSeleccionado):
 	if (habilidadSeleccionada.getNombre() == "Saltar turno"):
 		mensaje = str(mensaje," pasa su turno para ahorrar Creatividad.")
 	else:
-		mensaje = str(mensaje," usa ", habilidadSeleccionada.getNombre()," en ", personajeSeleccionado.getNombre(),".")
+		mensaje = str(mensaje," usa ", habilidadSeleccionada.getNombre()," en ")
+		if (personajeTurno != personajeSeleccionado):
+			mensaje = str(mensaje,personajeSeleccionado.getNombre(),".")
+		else:
+			mensaje = str(mensaje,"sí mismo.")
 	yield(dialogo.mostrar(mensaje),"completed")
 	
 	monto = yield(personajeTurno.usarHabilidad(personajeSeleccionado,habilidadSeleccionada),"completed")

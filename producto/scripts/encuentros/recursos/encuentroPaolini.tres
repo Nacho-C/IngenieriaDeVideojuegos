@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://scripts/encuentros/recursos/encuentro.gd" type="Script" id=1]
+[ext_resource path="res://assets/music/Aquel Amor - Francisco Lomuto.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/img/Background/Playa-Background.png" type="Texture" id=3]
+[ext_resource path="res://scripts/personajes/libero.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/personajes/homero.tscn" type="PackedScene" id=5]
+
+[resource]
+script = ExtResource( 1 )
+musica = ExtResource( 2 )
+fondo = ExtResource( 3 )
+rivales = [ ExtResource( 4 ), ExtResource( 5 ) ]
+dialogoInicial = [  ]
+dialogoFinal = [  ]

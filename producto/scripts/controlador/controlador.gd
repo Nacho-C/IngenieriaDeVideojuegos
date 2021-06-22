@@ -1,26 +1,21 @@
 extends Sprite
 
-export var menuEncuentro : Resource
+export var encuentros : Array
+var res_menuEncuentro = load("res://scripts/encuentros/menuEncuentro.tscn")
 var equipo = load("res://scripts/equipos/equipo.tscn")
 var personaje = load("res://scripts/personajes/personaje.tscn")
 var res_astor = load("res://scripts/personajes/astor.tscn")
-var res_nadia = load("res://scripts/personajes/nadia.tscn")
 var res_anibal = load("res://scripts/personajes/anibal.tscn")
 var e1
 var p1a
 var p1b
 var p1c
 var e2
-var p2a
-var p2b
-var p2c
-var encuentro
+var menuEncuentro
 
-func _ready():
-	var fondo = load("res://assets/img/Background/Paris-Background.png")
-	var musica = load("res://assets/music/Preparense - Astor Piazzolla.mp3")
-	
-	#Creación de equipo 1
+func _ready():	
+	var i = 2
+	#Creación de equipo
 	e1 = equipo.instance()
 	p1a = res_anibal.instance()
 	p1b = res_astor.instance()
@@ -29,10 +24,10 @@ func _ready():
 	
 	#Creación de equipo 2
 	e2 = equipo.instance()
-	p2a = res_nadia.instance()
-	e2.agregarPersonaje(p2a)
+	for p in encuentros[i].getRivales():
+		e2.agregarPersonaje(p.instance())
 	
 	#Creación de encuentro
-	encuentro = menuEncuentro.instance()
-	add_child(encuentro)
-	encuentro.init(fondo,musica,e1,e2)
+	menuEncuentro = res_menuEncuentro.instance()
+	add_child(menuEncuentro)
+	menuEncuentro.init(encuentros[i].getFondo(),encuentros[i].getMusica(),e1,e2)
