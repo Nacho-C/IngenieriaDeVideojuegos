@@ -8,5 +8,5 @@ nombre = "Compás de 4 tiempos"
 costo = 10
 statBase = "talento"
 multiplicador = 0.4
-statObjetivo = "autoestima"
+statObjetivo = "Autoestima"
 equipoAfectado = "aliados"

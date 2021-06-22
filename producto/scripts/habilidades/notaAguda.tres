@@ -8,5 +8,5 @@ nombre = "Nota Aguda"
 costo = 15
 statBase = "talento"
 multiplicador = -0.5
-statObjetivo = "timer"
+statObjetivo = "Reloj"
 equipoAfectado = "enemigos"

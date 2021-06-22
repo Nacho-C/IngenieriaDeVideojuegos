@@ -8,5 +8,5 @@ nombre = "Nota Grave"
 costo = 15
 statBase = "talento"
 multiplicador = -0.5
-statObjetivo = "creatividad"
+statObjetivo = "Creatividad"
 equipoAfectado = "enemigos"

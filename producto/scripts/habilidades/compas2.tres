@@ -8,5 +8,5 @@ nombre = "Compás de 2 tiempos"
 costo = 15
 statBase = "talento"
 multiplicador = 0.5
-statObjetivo = "talento"
+statObjetivo = "Talento"
 equipoAfectado = "aliados"

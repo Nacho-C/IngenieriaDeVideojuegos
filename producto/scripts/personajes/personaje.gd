@@ -12,15 +12,13 @@ export var autoestima : int
 export var dedosRapidos : int
 var direccion
 var habilidades
-var animandoCreatividad = false
-var animandoTimer = false
 
 signal bastaParaMi
 signal seleccionado
 signal terminarTurno
 
 func _ready():
-	animarCreatividad()
+	yield(animarCreatividad(),"completed")
 
 #Actualiza el timer y la creatividad en cada frame
 func _process(delta):
@@ -29,14 +27,12 @@ func _process(delta):
 		creatividad += delta*creatividadInicial/10
 		if creatividad > creatividadInicial:
 			creatividad = creatividadInicial
-		if !animandoCreatividad:
-			$BarraCreatividad.value = 100 * creatividad / creatividadInicial
+		$BarraCreatividad.value = 100 * creatividad / creatividadInicial
 		if (self.timer >= 100):
 			timer = 100
 			timerRunning = false
 			emit_signal("bastaParaMi")
-		if !animandoTimer:
-			$Timer.value = timer
+		$Timer.value = timer
 
 func setEquipo(equipo):
 	self.equipo = equipo
@@ -75,73 +71,70 @@ func getHabilidades():
 #PRE: creatividad >= habilidad.getCosto()
 func usarHabilidad(objetivo,habilidad):
 	creatividad -= habilidad.getCosto()
-	animarCreatividad()
-	habilidad.ejecutar(self,objetivo)
+	yield(animarCreatividad(),"completed")
+	return yield(habilidad.ejecutar(self,objetivo),"completed")
 
 func animarCreatividad():
-	animandoCreatividad = true
-	var paso = 1/6
-	var signo
-	if ($BarraCreatividad.value > (100 * creatividad / creatividadInicial)):
-		signo = -1
-	else:
-		signo = 1
-	if (abs($BarraCreatividad.value - (100 * creatividad / creatividadInicial)) > paso * 30):
-		paso = abs($BarraCreatividad.value - (100 * creatividad / creatividadInicial)) / 30
-	while true:
-		if abs($BarraCreatividad.value - (100 * creatividad / creatividadInicial)) > paso:
-			$BarraCreatividad.value += paso * signo
-			yield(get_tree(),"idle_frame")
-		else:
-			animandoCreatividad = false
-			return
+	var objetivo = 100 * creatividad / creatividadInicial
+	var paso = abs($BarraCreatividad.value - objetivo) / 25
+	var signo = sign($BarraCreatividad.value - objetivo) * (-1)
+	while abs($BarraCreatividad.value - objetivo) > paso:
+		$BarraCreatividad.value += paso * signo
+		yield(get_tree(),"idle_frame")
+	$BarraCreatividad.value = objetivo
+	yield(get_tree(),"idle_frame")
 
 func animarTimer():
-	animandoTimer = true
-	var paso = 1/6
-	var signo
-	if ($Timer.value > timer):
-		signo = -1
-	else:
-		signo = 1
-	if (abs($Timer.value - timer) > paso * 30):
-		paso = abs($Timer.value - timer) / 30
-	while true:
-		if abs($Timer.value - timer) > paso:
-			$Timer.value += paso * signo
-			yield(get_tree(),"idle_frame")
-		else:
-			animandoTimer = false
-			return
+	var paso = abs($Timer.value - timer) / 25
+	var signo = sign($Timer.value - timer) * (-1)
+	while abs($Timer.value - timer) > paso:
+		$Timer.value += paso * signo
+		yield(get_tree(),"idle_frame")
+	$Timer.value = timer
+	yield(get_tree(),"idle_frame")
 
 #Altera una estadística cuando el personaje recibe una habilidad
 func alterarStat(monto,stat):
+	var retorno = monto
 	var resultado = monto
 	match stat:
-		"respeto": 
+		"Respeto": 
 			if (-monto > autoestima):
-				respeto -= (monto + autoestima)
-		"talento": 
+				retorno = monto + autoestima
+				respeto -= retorno
+			else:
+				retorno = 0
+		"Talento": 
 			if (talento + monto > 0):
 				talento += monto
-		"creatividad": 
+			else:
+				talento = 0
+		"Creatividad": 
 			if (creatividad + monto > 0):
 				creatividad += monto
-			animarCreatividad()
-		"autoestima": 
+			else:
+				creatividad = 0
+			yield(animarCreatividad(),"completed")
+		"Autoestima": 
 			if (autoestima + monto > 0):
 				autoestima += monto
-		"dedosRapidos": 
+			else:
+				autoestima = 0
+		"Dedos Rápidos": 
 			if (dedosRapidos + monto > 0):
 				dedosRapidos += monto
-		"timer":
+			else:
+				dedosRapidos = 0
+		"Reloj":
 			timer += monto
 			if (timer < 0):
 				timer = 0
 			else:
 				if (timer > 100):
 					timer = 100
-			animarTimer()
+			yield(animarTimer(),"completed")
+	yield(get_tree(),"idle_frame")
+	return retorno
 
 func getNombre():
 	return nombre

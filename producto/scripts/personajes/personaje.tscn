@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/img/Sprites/estatua-lobo_marino.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Personajes/personaje.gd" type="Script" id=2]
-[ext_resource path="res://scripts/Personajes/habilidades.gd" type="Script" id=3]
-[ext_resource path="res://scripts/habilidades/saltar.tres" type="Resource" id=4]
+[ext_resource path="res://scripts/personajes/personaje.gd" type="Script" id=2]
+[ext_resource path="res://scripts/personajes/habilidades.gd" type="Script" id=3]
 [ext_resource path="res://scripts/personajes/botonPersonaje.gd" type="Script" id=5]
 [ext_resource path="res://assets/img/UI/indicadorSeleccionable.png" type="Texture" id=6]
 [ext_resource path="res://assets/img/UI/creatividadOver.png" type="Texture" id=7]
@@ -40,7 +39,7 @@ script = ExtResource( 5 )
 
 [node name="Habilidades" type="Node" parent="."]
 script = ExtResource( 3 )
-habilidades = [ ExtResource( 4 ) ]
+habilidades = [ null ]
 
 [node name="BarraCreatividad" type="TextureProgress" parent="."]
 margin_left = -32.0
@@ -48,7 +47,7 @@ margin_top = -80.0
 margin_right = 64.0
 margin_bottom = -64.0
 rect_scale = Vector2( 1.3, 1.3 )
-step = 0.1
+step = 0.0
 texture_under = ExtResource( 9 )
 texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
@@ -63,7 +62,7 @@ margin_top = -82.0
 margin_right = -40.0
 margin_bottom = -58.0
 rect_min_size = Vector2( 1.3, 1.3 )
-step = 0.1
+step = 0.0
 texture_under = ExtResource( 11 )
 texture_over = ExtResource( 10 )
 texture_progress = ExtResource( 12 )

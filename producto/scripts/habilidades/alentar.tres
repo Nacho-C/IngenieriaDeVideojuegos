@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
-nombre = "Crítica"
-costo = 10
-statBase = "talento"
-multiplicador = -0.3
+nombre = "Alentar"
+costo = 0
+statBase = "creatividad"
+multiplicador = 0.5
 statObjetivo = "Autoestima"
-equipoAfectado = "enemigos"
+equipoAfectado = "aliados"

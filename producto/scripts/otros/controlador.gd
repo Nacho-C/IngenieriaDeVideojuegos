@@ -9,8 +9,11 @@ var res_anibal = load("res://scripts/personajes/anibal.tscn")
 var e1
 var p1a
 var p1b
+var p1c
 var e2
 var p2a
+var p2b
+var p2c
 var encuentro
 
 func _ready():

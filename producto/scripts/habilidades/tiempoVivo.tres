@@ -8,5 +8,5 @@ nombre = "Tiempo Vivo"
 costo = 15
 statBase = "talento"
 multiplicador = 0.8
-statObjetivo = "dedosRapidos"
+statObjetivo = "Dedos Rápidos"
 equipoAfectado = "aliados"

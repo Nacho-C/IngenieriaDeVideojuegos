@@ -8,5 +8,5 @@ nombre = "Solo de Bandoneón"
 costo = 20
 statBase = "talento"
 multiplicador = -1.0
-statObjetivo = "respeto"
+statObjetivo = "Respeto"
 equipoAfectado = "enemigos"

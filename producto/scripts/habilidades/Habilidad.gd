@@ -6,7 +6,7 @@ export var nombre : String
 export var costo : int
 export(String,"respeto","talento","creatividad","autoestima","dedosRapidos") var statBase
 export var multiplicador : float
-export(String,"respeto","talento","creatividad","autoestima","dedosRapidos","timer") var statObjetivo
+export(String,"Respeto","Talento","Creatividad","Autoestima","Dedos Rápidos","Reloj") var statObjetivo
 export(String,"aliados","enemigos") var equipoAfectado
 
 func getNombre():
@@ -20,6 +20,12 @@ func getEquipoAfectado():
 func getCosto():
 	return costo
 
+func getStatObjetivo():
+	return statObjetivo
+
+func getMultiplicador():
+	return multiplicador
+
 func ejecutar(fuente,objetivo):
 	var monto
 	match statBase:
@@ -29,4 +35,4 @@ func ejecutar(fuente,objetivo):
 		"autoestima": monto = fuente.getAutoestima()
 		"dedosRapidos": monto = fuente.getDedosRapidos()
 	monto = monto * multiplicador
-	objetivo.alterarStat(monto,statObjetivo)
+	return yield(objetivo.alterarStat(monto,statObjetivo),"completed")
