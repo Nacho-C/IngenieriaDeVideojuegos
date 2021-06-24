@@ -15,9 +15,12 @@ var respeto2
 var personajeTurno
 var inventarioTurno
 var habilidadSeleccionada
+var animaciones
 
 signal bastaParaTodos
 signal chanchoArriba
+signal ganado
+signal perdido
 
 #Inicializa el encuentro
 func init(fondo,musica,e1,e2):
@@ -58,24 +61,31 @@ func init(fondo,musica,e1,e2):
 		self.connect("chanchoArriba",p,"retomarTimer")
 	$Respeto2.value = 0
 	$Respeto2.rect_position = posEquipo1 + Vector2(-128,-380)
-	
+
+func comenzar():
 	#Comienza el encuentro
 	dialogo.init()
 	add_child(dialogo)
-	dialogo.position = Vector2(640,540)
-	yield(dialogo.mostrar("¡Que comience el encuentro!"),"completed")
+	dialogo.setPosicion(Vector2(640,540))
+	yield(dialogo.mostrar("¡Que comience el encuentro!",null),"completed")
 	get_node("/root/Sonidos").empezarMusica(musica)
 	emit_signal("chanchoArriba")
 
 #Llamado cuando el timer de un personae llega a 100
 func comenzarTurno(source):
 	personajeTurno = source
+	animaciones = personajeTurno.getAnimaciones()
 	emit_signal("bastaParaTodos")
-	yield(dialogo.mostrar(str("Es el turno de ",personajeTurno.getNombre(),".")),"completed")
-	personajeTurno.position = personajeTurno.position + Vector2(100*personajeTurno.getDireccion(),0)
+	yield(dialogo.mostrar(str("Es el turno de ",personajeTurno.getNombre(),"."),null),"completed")
 	if (personajeTurno.getEquipo() == 1):
+		animaciones.play("caminarADerecha")
+		yield(animaciones,"animation_finished")
+		animaciones.play("idle")
 		mostrarInventarios()
 	else:
+		animaciones.play("caminarAIzquierda")
+		yield(animaciones,"animation_finished")
+		animaciones.play("idle")
 		turnoIA()
 
 #Secuencia para el turno de un personaje no controlado por el usuario
@@ -167,10 +177,13 @@ func terminarTurno(personajeSeleccionado):
 			mensaje = str(mensaje,personajeSeleccionado.getNombre(),".")
 		else:
 			mensaje = str(mensaje,"sí mismo.")
-	yield(dialogo.mostrar(mensaje),"completed")
+	yield(dialogo.mostrar(mensaje,null),"completed")
 	
-	monto = yield(personajeTurno.usarHabilidad(personajeSeleccionado,habilidadSeleccionada),"completed")
 	if (habilidadSeleccionada.getNombre() != "Saltar turno"):
+		animaciones.play("habilidad")
+		yield(animaciones,"animation_finished")
+		animaciones.play("idle")
+		monto = yield(personajeTurno.usarHabilidad(personajeSeleccionado,habilidadSeleccionada),"completed")
 		if (monto == 0):
 			mensaje = "¡La habilidad no tuvo efecto!"
 		else:
@@ -184,15 +197,29 @@ func terminarTurno(personajeSeleccionado):
 				else:
 					mensaje = str(mensaje," sube en ")
 			mensaje = str(mensaje,abs(monto)," puntos!")
-		yield(dialogo.mostrar(mensaje),"completed")
-	personajeTurno.position = personajeTurno.position + Vector2(-100*personajeTurno.getDireccion(),0)
+		yield(dialogo.mostrar(mensaje,null),"completed")
+	else:
+		monto = yield(personajeTurno.usarHabilidad(personajeSeleccionado,habilidadSeleccionada),"completed")
+	if (personajeTurno.getEquipo() == 1):
+		animaciones.play("volverDeDerecha")
+		yield(animaciones,"animation_finished")
+		animaciones.play("idle")
+	else:
+		animaciones.play("volverDeIzquierda")
+		yield(animaciones,"animation_finished")
+		animaciones.play("idle")
+	
+	#BORRAR ESTO AAAA
+	terminarEncuentro(1)
+	
 	if (respeto1 == 100):
 		terminarEncuentro(2)
 	elif (respeto2 == 100):
 		terminarEncuentro(1)
 	else:
-		personajeTurno.comenzarTimer()
-		emit_signal("chanchoArriba")
+		#personajeTurno.comenzarTimer()
+		#emit_signal("chanchoArriba")
+		print("AAAA")
 
 func actualizarRespeto(equipo):
 	if (equipo == 1):
@@ -225,8 +252,9 @@ func terminarEncuentro(equipoGanador):
 	$Pausa/BotonPausa.desactivar()
 	if (equipoGanador == 1):
 		mensaje = "¡El equipo de Astor Piazzola gana el encuentro!"
+		yield(dialogo.mostrar(mensaje,null),"completed")
+		emit_signal("ganado")
 	else:
 		mensaje = "¡El equipo de Astor Piazzola pierde el encuentro!"
-	yield(dialogo.mostrar(mensaje),"completed")
-	#GUARDA BORRAR ESTO
-	get_tree().paused = true
+		yield(dialogo.mostrar(mensaje,null),"completed")
+		emit_signal("perdido")

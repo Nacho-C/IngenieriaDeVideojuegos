@@ -13,3 +13,4 @@ fondo = ExtResource( 3 )
 rivales = [ ExtResource( 4 ), ExtResource( 5 ) ]
 dialogoInicial = [  ]
 dialogoFinal = [  ]
+personajePremio = ExtResource( 5 )

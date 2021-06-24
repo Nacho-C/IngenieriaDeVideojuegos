@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/fonts/tango font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/tilesets/tilesetMarco.tres" type="TileSet" id=2]
+[ext_resource path="res://scripts/menus/menuPrincipal.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 184.5, 92.25 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 184.5, 92.25 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 184.5, 92.25 )
+
+[node name="Menu Principal" type="Node2D"]
+position = Vector2( 640, 360 )
+script = ExtResource( 3 )
+
+[node name="Marcos" type="TileMap" parent="."]
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 123, 123 )
+cell_quadrant_size = 123
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 196598, 0, 0, 196599, 0, 1, 196600, 0, 1, 196601, 0, 1, 196602, 0, 1, 196603, 0, 2, 196605, 0, 0, 196606, 0, 1, 196607, 0, 1, 131072, 0, 1, 131073, 0, 1, 131074, 0, 2, 131076, 0, 0, 131077, 0, 1, 131078, 0, 1, 131079, 0, 1, 131080, 0, 1, 131081, 0, 2, 262134, 0, 65536, 262135, 0, 65537, 262136, 0, 65537, 262137, 0, 65537, 262138, 0, 65537, 262139, 0, 65538, 262141, 0, 65536, 262142, 0, 65537, 262143, 0, 65537, 196608, 0, 65537, 196609, 0, 65537, 196610, 0, 65538, 196612, 0, 65536, 196613, 0, 65537, 196614, 0, 65537, 196615, 0, 65537, 196616, 0, 65537, 196617, 0, 65538, 327670, 0, 131072, 327671, 0, 131073, 327672, 0, 131073, 327673, 0, 131073, 327674, 0, 131073, 327675, 0, 131074, 327677, 0, 131072, 327678, 0, 131073, 327679, 0, 131073, 262144, 0, 131073, 262145, 0, 131073, 262146, 0, 131074, 262148, 0, 131072, 262149, 0, 131073, 262150, 0, 131073, 262151, 0, 131073, 262152, 0, 131073, 262153, 0, 131074 )
+
+[node name="BotonNueva" type="TouchScreenButton" parent="Marcos"]
+position = Vector2( -1230, 246 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="Marcos/BotonNueva"]
+margin_right = 369.0
+margin_bottom = 184.5
+custom_fonts/font = SubResource( 2 )
+text = "Nueva Partida"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BotonSeguir" type="TouchScreenButton" parent="Marcos"]
+position = Vector2( -369, 246 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Marcos/BotonSeguir"]
+margin_right = 369.0
+margin_bottom = 184.5
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.607843, 0.607843, 0.607843, 1 )
+text = "Seguir Partida"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BotonEstadisticas" type="TouchScreenButton" parent="Marcos"]
+position = Vector2( 492, 246 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 4 )
+
+[node name="Label" type="Label" parent="Marcos/BotonEstadisticas"]
+margin_right = 369.0
+margin_bottom = 184.5
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.607843, 0.607843, 0.607843, 1 )
+text = "Estadísticas"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

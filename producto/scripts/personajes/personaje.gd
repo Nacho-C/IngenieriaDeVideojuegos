@@ -12,6 +12,7 @@ export var autoestima : int
 export var dedosRapidos : int
 var direccion
 var habilidades
+var dedosRapidosMin
 
 signal bastaParaMi
 signal seleccionado
@@ -19,6 +20,7 @@ signal terminarTurno
 
 func _ready():
 	yield(animarCreatividad(),"completed")
+	dedosRapidosMin = dedosRapidos * 0.3
 
 #Actualiza el timer y la creatividad en cada frame
 func _process(delta):
@@ -95,15 +97,19 @@ func animarTimer():
 
 #Altera una estadística cuando el personaje recibe una habilidad
 func alterarStat(monto,stat):
-	var retorno = monto
-	var resultado = monto
+	if (monto < 0):
+		$Animaciones.play("statDown")
+		yield($Animaciones,"animation_finished")
+	elif (monto > 0):
+		$Animaciones.play("statUp")
+		yield($Animaciones,"animation_finished")
 	match stat:
 		"Respeto": 
-			if (-monto > autoestima):
-				retorno = monto + autoestima
-				respeto -= retorno
+			if (monto > autoestima):
+				monto += autoestima
+				respeto += monto
 			else:
-				retorno = 0
+				monto = 0
 		"Talento": 
 			if (talento + monto > 0):
 				talento += monto
@@ -111,6 +117,8 @@ func alterarStat(monto,stat):
 				talento = 0
 		"Creatividad": 
 			if (creatividad + monto > 0):
+				if (creatividad + monto > creatividadInicial):
+					monto = creatividadInicial - creatividad
 				creatividad += monto
 			else:
 				creatividad = 0
@@ -121,10 +129,11 @@ func alterarStat(monto,stat):
 			else:
 				autoestima = 0
 		"Dedos Rápidos": 
-			if (dedosRapidos + monto > 0):
-				dedosRapidos += monto
+			if (dedosRapidos + monto < dedosRapidosMin):
+				monto = dedosRapidosMin - dedosRapidos
+				dedosRapidos = dedosRapidosMin
 			else:
-				dedosRapidos = 0
+				dedosRapidos += monto
 		"Reloj":
 			timer += monto
 			if (timer < 0):
@@ -134,13 +143,13 @@ func alterarStat(monto,stat):
 					timer = 100
 			yield(animarTimer(),"completed")
 	yield(get_tree(),"idle_frame")
-	return retorno
+	return monto
 
 func getNombre():
 	return nombre
 
 func getRespeto():
-	return respeto
+	return -respeto
 
 func getTalento():
 	return talento
@@ -176,7 +185,16 @@ func setActivadoBoton(valor):
 
 #Devuelve la posición del cursor de acuerdo a la posición y tamaño del personaje
 func getPosicionFlecha():
-	var offsetX = ($Sprite.texture.get_width() * $Sprite.transform.get_scale().x / 2) + 10
+	var offsetX = ($Sprite.texture.get_width() * $Sprite.transform.get_scale().x / (2 * $Sprite.hframes)) + 10
 	var retorno = self.position
 	retorno.x += direccion * -1 * offsetX
 	return retorno
+
+func cambiarTextura(textura):
+	$Sprite.texture = textura
+
+func getTextura():
+	return $Sprite.texture
+
+func getAnimaciones():
+	return $Animaciones

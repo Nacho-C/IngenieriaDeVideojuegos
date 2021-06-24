@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://scripts/encuentros/recursos/encuentro.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/Background/Paris-Background.png" type="Texture" id=2]
 [ext_resource path="res://assets/music/Preparense - Astor Piazzolla.mp3" type="AudioStream" id=3]
 [ext_resource path="res://scripts/personajes/nadia.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/personajes/nadiaAliada.tscn" type="PackedScene" id=5]
 
 [resource]
 script = ExtResource( 1 )
@@ -12,3 +13,4 @@ fondo = ExtResource( 2 )
 rivales = [ ExtResource( 4 ) ]
 dialogoInicial = [  ]
 dialogoFinal = [  ]
+personajePremio = ExtResource( 5 )

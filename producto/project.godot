@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "dialogo",
+"language": "GDScript",
+"path": "res://scripts/dialogos/dialogo.gd"
+}, {
+"base": "Resource",
 "class": "encuentro",
 "language": "GDScript",
 "path": "res://scripts/encuentros/recursos/encuentro.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/habilidades/habilidad.gd"
 } ]
 _global_script_class_icons={
+"dialogo": "",
 "encuentro": "",
 "habilidad": ""
 }
@@ -28,7 +34,6 @@ _global_script_class_icons={
 
 config/name="Astor"
 run/main_scene="res://scripts/controlador/controlador.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 

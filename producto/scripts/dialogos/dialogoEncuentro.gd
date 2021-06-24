@@ -3,17 +3,26 @@ extends Node2D
 signal ocultado
 
 func init():
-	$Marco/BotonDialogo.connect("released",self,"ocultar")
+	$Canvas/Marco/BotonDialogo.connect("released",self,"ocultar")
+	$Canvas/Marco.set_visible(false)
 
-func mostrar(mensaje):
+func mostrar(mensaje, imagen):
+	if (imagen == null):
+		$Canvas/Marco/Imagen.set_visible(false)
+	else:
+		$Canvas/Marco/Imagen.set_texture(imagen)
+		$Canvas/Marco/Imagen.set_visible(true)
 	get_node("/root/Sonidos").mensaje()
 	get_tree().paused = true
-	$Marco/Texto.set_text(mensaje)
-	self.set_visible(true)
+	$Canvas/Marco/Texto.set_text(mensaje)
+	$Canvas/Marco.set_visible(true)
 	yield(self,"ocultado")
 
 func ocultar():
 	get_node("/root/Sonidos").click()
-	self.set_visible(false)
+	$Canvas/Marco.set_visible(false)
 	get_tree().paused = false
 	emit_signal("ocultado")
+
+func setPosicion(posicion):
+	$Canvas.offset = posicion

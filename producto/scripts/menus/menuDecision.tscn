@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/fonts/tango font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/menus/menuDecision.gd" type="Script" id=2]
+[ext_resource path="res://assets/tilesets/tilesetMarco.tres" type="TileSet" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 246, 123 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 184.5, 246 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 184.5, 246 )
+
+[node name="Menu decision" type="Node2D"]
+position = Vector2( 640, 478.112 )
+script = ExtResource( 2 )
+
+[node name="Marco" type="TileMap" parent="."]
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 123, 123 )
+cell_quadrant_size = 123
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_tile_origin = 1
+format = 1
+tile_data = PoolIntArray( -65542, 0, 0, -65541, 0, 1, -65540, 0, 2, -131069, 0, 0, -131068, 0, 1, -131067, 0, 2, -6, 0, 65536, -5, 0, 65537, -4, 0, 65538, -2, 0, 0, -1, 0, 1, -65536, 0, 1, -65535, 0, 2, -65533, 0, 65536, -65532, 0, 65537, -65531, 0, 65538, 65530, 0, 65536, 65531, 0, 65537, 65532, 0, 65538, 65534, 0, 131072, 65535, 0, 131073, 0, 0, 131073, 1, 0, 131074, 3, 0, 65536, 4, 0, 65537, 5, 0, 65538, 131066, 0, 131072, 131067, 0, 131073, 131068, 0, 131074, 65539, 0, 131072, 65540, 0, 131073, 65541, 0, 131074 )
+
+[node name="TextoNoReemplazar" type="Label" parent="Marco"]
+margin_left = -242.0
+margin_top = -126.0
+margin_right = 250.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 1 )
+text = "No añadir"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BotonNoReemplazar" type="TouchScreenButton" parent="Marco"]
+position = Vector2( -246, -123 )
+shape = SubResource( 2 )
+
+[node name="Boton2" type="TouchScreenButton" parent="Marco"]
+position = Vector2( 367.112, -246 )
+shape = SubResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="Marco/Boton2"]
+position = Vector2( 184.5, 246 )
+scale = Vector2( 2, 2 )
+hframes = 4
+vframes = 2
+
+[node name="Boton1" type="TouchScreenButton" parent="Marco"]
+position = Vector2( -738, -247.888 )
+shape = SubResource( 4 )
+
+[node name="Sprite1" type="Sprite" parent="Marco/Boton1"]
+position = Vector2( 184.5, 246 )
+scale = Vector2( 2, 2 )
+hframes = 4
+vframes = 2
