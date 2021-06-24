@@ -16,13 +16,13 @@ extents = Vector2( 492, 246 )
 [node name="Dialogo" type="Node2D"]
 pause_mode = 2
 process_priority = 100
-visible = false
 script = ExtResource( 2 )
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 layer = 127
 
 [node name="Marco" type="TileMap" parent="Canvas"]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 123, 123 )

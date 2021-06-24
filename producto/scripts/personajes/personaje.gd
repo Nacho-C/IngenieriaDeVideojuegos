@@ -105,7 +105,7 @@ func alterarStat(monto,stat):
 		yield($Animaciones,"animation_finished")
 	match stat:
 		"Respeto": 
-			if (monto > autoestima):
+			if (monto < -autoestima):
 				monto += autoestima
 				respeto += monto
 			else:

@@ -10,6 +10,7 @@ var res_menuEncuentro = load("res://scripts/encuentros/menuEncuentro.tscn")
 var menuEncuentro
 var res_equipo = load("res://scripts/equipos/equipo.tscn")
 var archivo_astorJoven = "res://scripts/personajes/astorJoven.tscn"
+var archivo_astor = "res://scripts/personajes/astor.tscn"
 var res_dialogo = load("res://scripts/dialogos/dialogoEncuentro.tscn")
 var dialogo
 
@@ -26,6 +27,7 @@ var encuentro
 signal comenzar
 
 func _ready():
+	$"Game Over/Boton Game Over".connect("released",self,"volverAlMenu")
 	dialogo = res_dialogo.instance()
 	dialogo.init()
 	add_child(dialogo)
@@ -41,12 +43,18 @@ func _ready():
 func crearEquipoAliado():
 	equipoAliado = res_equipo.instance()
 	cantAliados = 0
+	if (indiceEncuentro == 4):
+		aliados[1] = archivo_astor
 	for p in aliados:
 		if (p != null):
 			cantAliados += 1
 			equipoAliado.agregarPersonaje(load(p).instance())
+	if (indiceEncuentro == 7):
+		equipoAliado.quitarPersonaje("Vicente Piazzolla")
 
 func siguienteEncuentro():
+	var solo = false
+	
 	guardarPartida()
 	
 	#Limpia los nodos del encuentro anterior
@@ -64,6 +72,8 @@ func siguienteEncuentro():
 		equipoRival = res_equipo.instance()
 		for p in encuentros[indiceEncuentro].getRivales():
 			equipoRival.agregarPersonaje(p.instance())
+		if (equipoRival.getPersonajes().size() == 1 && equipoRival.getPersonajes()[0].getNombre() == "Público Mundial"):
+			solo = true
 		
 		#Crea el menu de encuentros
 		menuEncuentro = res_menuEncuentro.instance()
@@ -71,13 +81,18 @@ func siguienteEncuentro():
 		menuEncuentro.connect("perdido",self,"perder")
 		self.connect("comenzar",menuEncuentro,"comenzar")
 		add_child(menuEncuentro)
-		menuEncuentro.init(encuentro.getFondo(),encuentro.getMusica(),equipoAliado,equipoRival)
+		menuEncuentro.init(encuentro.getFondo(),encuentro.getMusica(),equipoAliado,equipoRival,solo)
 		for d in encuentro.getInicio():
 			yield(dialogo.mostrar(d.getTexto(),d.getImagen()),"completed")
 		emit_signal("comenzar")
-		print("hola")
 	else:
-		print("termino el juego xd")
+		if (menuEncuentro != null):
+			menuEncuentro.queue_free()
+		$"Game Over".set_visible(true)
+
+func volverAlMenu():
+	menu.setVisible(true)
+	$"Game Over".set_visible(false)
 
 func ganar():
 	encuentrosGanados += 1
@@ -101,6 +116,7 @@ func personajePremio():
 		retorno = yield(decision.elegir(aliados[0],aliados[2]),"completed")
 		if (retorno != -1):
 			aliados[retorno] = premio.get_path()
+	decision.queue_free()
 	yield(get_tree(),"idle_frame")
 
 func perder():
@@ -108,7 +124,6 @@ func perder():
 	guardarPartida()
 	menuEncuentro.queue_free()
 	menu.setVisible(true)
-	#ACA MOSTRAR GAME OVER Y VOLVER AL MENU
 
 func guardarPartida():
 	var archivo = File.new()
@@ -141,7 +156,6 @@ func cargarArchivo():
 
 func nuevaPartida():
 	get_node("/root/Sonidos").click()
-	#Avisar que se sobreescribe la partida
 	indiceEncuentro = -1
 	encuentrosGanadosSeguidos = 0
 	aliados.clear()

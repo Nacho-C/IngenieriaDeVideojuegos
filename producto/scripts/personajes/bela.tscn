@@ -8,6 +8,10 @@
 
 [node name="Personaje" instance=ExtResource( 2 )]
 nombre = "Bela Wilda"
+creatividadInicial = 50
+talento = 30
+autoestima = 20
+dedosRapidos = 30
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 1 )

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=12 format=2]
 
 [ext_resource path="res://scripts/encuentros/recursos/encuentro.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/Background/BsAs-Background.png" type="Texture" id=2]
@@ -6,11 +6,16 @@
 [ext_resource path="res://scripts/personajes/anibal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/personajes/tangueroJuan.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/personajes/tangueroPedro.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/dialogos/dialogos5b/0.tres" type="Resource" id=7]
+[ext_resource path="res://scripts/dialogos/dialogos5a/2.tres" type="Resource" id=8]
+[ext_resource path="res://scripts/dialogos/dialogos5a/0.tres" type="Resource" id=9]
+[ext_resource path="res://scripts/dialogos/dialogos5a/1.tres" type="Resource" id=10]
+[ext_resource path="res://scripts/dialogos/dialogos5b/1.tres" type="Resource" id=11]
 
 [resource]
 script = ExtResource( 1 )
 musica = ExtResource( 3 )
 fondo = ExtResource( 2 )
 rivales = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ]
-dialogoInicial = [  ]
-dialogoFinal = [  ]
+dialogoInicial = [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ) ]
+dialogoFinal = [ ExtResource( 7 ), ExtResource( 11 ) ]

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/dialogos/dialogo.gd" type="Script" id=1]
+[ext_resource path="res://assets/img/Faces/Troilo.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+texto = "Ese traje no va, pibe. Conseguite uno azul que debutas esta noche."
+imagen = ExtResource( 2 )

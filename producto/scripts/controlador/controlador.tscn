@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/controlador/controlador.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/UI/Menu.png" type="Texture" id=2]
@@ -10,6 +10,16 @@
 [ext_resource path="res://scripts/encuentros/recursos/encuentroBela.tres" type="Resource" id=8]
 [ext_resource path="res://scripts/encuentros/recursos/encuentroTroilo1.tres" type="Resource" id=9]
 [ext_resource path="res://scripts/encuentros/recursos/encuentroFinal.tres" type="Resource" id=10]
+[ext_resource path="res://assets/fonts/tango font.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 85
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 11 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1000, 512 )
 
 [node name="Fondo" type="Sprite"]
 pause_mode = 1
@@ -18,3 +28,21 @@ centered = false
 offset = Vector2( -360, -152 )
 script = ExtResource( 1 )
 encuentros = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 10 ) ]
+
+[node name="Game Over" type="Label" parent="."]
+visible = false
+margin_left = 143.0
+margin_top = 540.0
+margin_right = 1137.0
+margin_bottom = 648.0
+custom_fonts/font = SubResource( 1 )
+text = "¡GRACIAS POR JUGAR!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Boton Game Over" type="TouchScreenButton" parent="Game Over"]
+position = Vector2( -503, -692 )
+shape = SubResource( 2 )

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/dialogos/dialogo.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+texto = "Astor conoce a uno de sus ídolos, Aníbal Troilo, y a su orquesta."

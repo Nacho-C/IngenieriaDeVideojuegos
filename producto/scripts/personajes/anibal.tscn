@@ -9,7 +9,10 @@
 
 [node name="Personaje" instance=ExtResource( 1 )]
 nombre = "Anibal Troilo"
-dedosRapidos = 15
+creatividadInicial = 65
+talento = 25
+autoestima = 15
+dedosRapidos = 25
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )

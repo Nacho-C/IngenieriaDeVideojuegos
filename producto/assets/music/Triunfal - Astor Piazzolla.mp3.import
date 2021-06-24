@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Triunfal - Astor Piazzolla.mp3-b5de0681f75e5f8bec836e28e9851f83.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Triunfal - Astor Piazzolla.mp3"
+dest_files=[ "res://.import/Triunfal - Astor Piazzolla.mp3-b5de0681f75e5f8bec836e28e9851f83.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

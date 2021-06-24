@@ -7,9 +7,13 @@
 
 [node name="Personaje" instance=ExtResource( 2 )]
 nombre = "Vicente Piazzolla"
+talento = 0
+autoestima = 15
+dedosRapidos = 25
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 1 )
+frame = 0
 
 [node name="Habilidades" parent="." index="2"]
 habilidades = [ ExtResource( 4 ), ExtResource( 3 ) ]

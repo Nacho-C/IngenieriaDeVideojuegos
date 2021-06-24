@@ -9,6 +9,8 @@ func _ready():
 	#Crea un área del tamaño y posición del sprite del personaje
 	var sprite = self.get_parent()
 	var size = sprite.get_texture().get_size()
+	size.x /= sprite.hframes
+	size.y /= sprite.vframes
 	var rectangulo = RectangleShape2D.new()
 	rectangulo.set_extents(size / 2)
 	self.set_shape(rectangulo)

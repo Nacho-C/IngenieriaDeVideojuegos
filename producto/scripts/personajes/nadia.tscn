@@ -8,8 +8,10 @@
 
 [node name="Personaje" instance=ExtResource( 1 )]
 nombre = "Nadia Boulanger"
-talento = 60
-dedosRapidos = 25
+creatividadInicial = 45
+talento = 45
+autoestima = 30
+dedosRapidos = 35
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )

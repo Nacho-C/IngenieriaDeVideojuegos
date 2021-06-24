@@ -1,16 +1,20 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=10 format=2]
 
 [ext_resource path="res://scripts/encuentros/recursos/encuentro.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/Background/Paris-Background.png" type="Texture" id=2]
-[ext_resource path="res://assets/music/Preparense - Astor Piazzolla.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/music/Triunfal - Astor Piazzolla.mp3" type="AudioStream" id=3]
 [ext_resource path="res://scripts/personajes/nadia.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/personajes/nadiaAliada.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/dialogos/dialogos6a/0.tres" type="Resource" id=6]
+[ext_resource path="res://scripts/dialogos/dialogos6a/1.tres" type="Resource" id=7]
+[ext_resource path="res://scripts/dialogos/dialogos6b/0.tres" type="Resource" id=8]
+[ext_resource path="res://scripts/dialogos/dialogos6b/1.tres" type="Resource" id=9]
 
 [resource]
 script = ExtResource( 1 )
 musica = ExtResource( 3 )
 fondo = ExtResource( 2 )
 rivales = [ ExtResource( 4 ) ]
-dialogoInicial = [  ]
-dialogoFinal = [  ]
+dialogoInicial = [ ExtResource( 6 ), ExtResource( 7 ) ]
+dialogoFinal = [ ExtResource( 8 ), ExtResource( 9 ) ]
 personajePremio = ExtResource( 5 )

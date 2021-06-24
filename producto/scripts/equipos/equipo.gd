@@ -13,6 +13,12 @@ func agregarPersonaje(personaje):
 	add_child(personaje)
 	posicionesPersonajes()
 
+func quitarPersonaje(nombrePersonaje):
+	for p in personajes:
+		if (p.getNombre() == nombrePersonaje):
+			personajes.erase(p)
+			p.queue_free()
+
 #Setea las posiciones relativas de cada personaje en función del tamaño del equipo
 func posicionesPersonajes():
 	if (personajes.size() == 1):
@@ -43,3 +49,9 @@ func getRespeto():
 	if (respeto >= 100):
 		respeto = 100
 	return respeto
+
+func setHorizontal():
+	var paso = 0
+	for p in personajes:
+		p.position = Vector2(p.position.y,p.position.x + paso)
+		paso += 50

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/personajes/personaje.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/img/void.png" type="Texture" id=2]
+
+[node name="Personaje" instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -100, 0 )
+nombre = "Público Mundial"
+creatividadInicial = 1
+talento = 0
+autoestima = 0
+dedosRapidos = 0
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )

@@ -9,6 +9,10 @@
 
 [node name="Personaje" instance=ExtResource( 2 )]
 nombre = "Carlos Gardel"
+creatividadInicial = 85
+talento = 50
+autoestima = 30
+dedosRapidos = 20
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 1 )

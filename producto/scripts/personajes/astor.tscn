@@ -9,7 +9,10 @@
 
 [node name="Personaje" instance=ExtResource( 1 )]
 nombre = "Astor Piazzolla"
-dedosRapidos = 20
+creatividadInicial = 55
+talento = 45
+autoestima = 25
+dedosRapidos = 30
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )

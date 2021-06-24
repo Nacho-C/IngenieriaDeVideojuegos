@@ -16,6 +16,7 @@ var personajeTurno
 var inventarioTurno
 var habilidadSeleccionada
 var animaciones
+var solo
 
 signal bastaParaTodos
 signal chanchoArriba
@@ -23,10 +24,12 @@ signal ganado
 signal perdido
 
 #Inicializa el encuentro
-func init(fondo,musica,e1,e2):
+func init(fondo,musica,e1,e2,solo):
 	#Setea el fondo del encuentro
 	self.texture = fondo
 	self.musica = musica
+	
+	self.solo = solo
 	
 	#Inicializa el botón de pausa
 	self.connect("bastaParaTodos",$Pausa/BotonPausa,"desactivar")
@@ -36,7 +39,6 @@ func init(fondo,musica,e1,e2):
 	equipo1 = e1
 	add_child(equipo1)
 	equipo1.setDireccion(1)
-	equipo1.position = posEquipo1
 	for p in e1.getPersonajes():
 		p.setEquipo(1)
 		p.connect("bastaParaMi",self,"comenzarTurno",[p])
@@ -44,8 +46,14 @@ func init(fondo,musica,e1,e2):
 		p.connect("terminarTurno",self,"terminarTurno",[p])
 		self.connect("bastaParaTodos",p,"detenerTimer")
 		self.connect("chanchoArriba",p,"retomarTimer")
-	$Respeto1.value = 0
-	$Respeto1.rect_position = posEquipo2 + Vector2(-128,-380)
+	if (!solo):
+		equipo1.position = posEquipo1
+		$Respeto1.value = 0
+		$Respeto1.rect_position = posEquipo2 + Vector2(-128,-380)
+		$Respeto1.set_visible(true)
+	else:
+		equipo1.position = Vector2(640,420)
+		equipo1.setHorizontal()
 	
 	#Agrega e inicializa equipo 2
 	equipo2 = e2
@@ -78,9 +86,10 @@ func comenzarTurno(source):
 	emit_signal("bastaParaTodos")
 	yield(dialogo.mostrar(str("Es el turno de ",personajeTurno.getNombre(),"."),null),"completed")
 	if (personajeTurno.getEquipo() == 1):
-		animaciones.play("caminarADerecha")
-		yield(animaciones,"animation_finished")
-		animaciones.play("idle")
+		if (!solo):
+			animaciones.play("caminarADerecha")
+			yield(animaciones,"animation_finished")
+			animaciones.play("idle")
 		mostrarInventarios()
 	else:
 		animaciones.play("caminarAIzquierda")
@@ -139,12 +148,16 @@ func mostrarObjetivos(habilidad):
 			for p in equipo1.getPersonajes():
 				p.setActivadoBoton(1)
 			moverCursor(equipo1.getPersonajes()[0])
+			add_child(cursor)
 		else:
-			cursor.init(2,equipo2.position)
-			for p in equipo2.getPersonajes():
-				p.setActivadoBoton(1)
-			moverCursor(equipo2.getPersonajes()[0])
-		add_child(cursor)
+			if (!solo):
+				cursor.init(2,equipo2.position)
+				for p in equipo2.getPersonajes():
+					p.setActivadoBoton(1)
+				moverCursor(equipo2.getPersonajes()[0])
+				add_child(cursor)
+			else:
+				terminarTurno(equipo2.getPersonajes()[0])
 
 #Posiciona el cursor en el personaje tocado
 func moverCursor(personajeSeleccionado):
@@ -200,7 +213,7 @@ func terminarTurno(personajeSeleccionado):
 		yield(dialogo.mostrar(mensaje,null),"completed")
 	else:
 		monto = yield(personajeTurno.usarHabilidad(personajeSeleccionado,habilidadSeleccionada),"completed")
-	if (personajeTurno.getEquipo() == 1):
+	if (!solo && personajeTurno.getEquipo() == 1):
 		animaciones.play("volverDeDerecha")
 		yield(animaciones,"animation_finished")
 		animaciones.play("idle")
@@ -209,17 +222,13 @@ func terminarTurno(personajeSeleccionado):
 		yield(animaciones,"animation_finished")
 		animaciones.play("idle")
 	
-	#BORRAR ESTO AAAA
-	terminarEncuentro(1)
-	
 	if (respeto1 == 100):
 		terminarEncuentro(2)
 	elif (respeto2 == 100):
 		terminarEncuentro(1)
 	else:
-		#personajeTurno.comenzarTimer()
-		#emit_signal("chanchoArriba")
-		print("AAAA")
+		personajeTurno.comenzarTimer()
+		emit_signal("chanchoArriba")
 
 func actualizarRespeto(equipo):
 	if (equipo == 1):

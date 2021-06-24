@@ -1,15 +1,19 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://scripts/encuentros/recursos/encuentro.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/Background/NY-Background.png" type="Texture" id=2]
 [ext_resource path="res://assets/music/Bouree - Bach.mp3" type="AudioStream" id=3]
 [ext_resource path="res://scripts/personajes/bela.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/dialogos/dialogos2b/0.tres" type="Resource" id=5]
+[ext_resource path="res://scripts/dialogos/dialogos2a/1.tres" type="Resource" id=6]
+[ext_resource path="res://scripts/dialogos/dialogos2a/2.tres" type="Resource" id=7]
+[ext_resource path="res://scripts/dialogos/dialogos2a/0.tres" type="Resource" id=8]
 
 [resource]
 script = ExtResource( 1 )
 musica = ExtResource( 3 )
 fondo = ExtResource( 2 )
 rivales = [ ExtResource( 4 ) ]
-dialogoInicial = [  ]
-dialogoFinal = [  ]
+dialogoInicial = [ ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ) ]
+dialogoFinal = [ ExtResource( 5 ) ]
 personajePremio = ExtResource( 4 )

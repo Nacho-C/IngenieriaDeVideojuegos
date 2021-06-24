@@ -7,6 +7,10 @@
 
 [node name="Personaje" instance=ExtResource( 1 )]
 nombre = "Tanguero Juan"
+creatividadInicial = 35
+talento = 27
+autoestima = 10
+dedosRapidos = 35
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 4 )

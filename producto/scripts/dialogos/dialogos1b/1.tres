@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/dialogos/dialogo.gd" type="Script" id=1]
+[ext_resource path="res://assets/img/Faces/Vicente.jpg" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+texto = "Eso ya lo sabía, maestro."
+imagen = ExtResource( 2 )

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/dialogos/dialogo.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+texto = "Un año más tarde, Gardel muere en un trágico accidente aereo."
